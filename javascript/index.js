@@ -1,6 +1,19 @@
+//Máscara de CEP para input
 $(document).ready(function () {
     $("#searchCep").mask("99999-999");
 })
+
+// Ajusta a navegação para funcionar corretamente
+function removeShow() {
+    $('a.active').removeClass('active')
+    $('div.show').removeClass('active show')
+}
+
+var activateOption = function (collection, newOption, firstActivation) {
+    collection.find('li.selected').removeClass('selected');
+    var option = $(newOption);
+    option.addClass('selected active'); /*Here Add active*/
+};
 
 //Função que inicia a pesquisa de CEP na API
 function buscaCEP() {

@@ -23,36 +23,57 @@
 
 <body>
     <header>
-        <ul class="nav nav-pills p-2 border-bottom " id="pills-tab" role="tablist">
-            <!-- titulo da página -->
-            <li class="nav-item px-4">
-                <h2 class="m-0">Buscar CEP</h2>
-            </li>
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark white">
+            
+            <!-- Collapse button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+                aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon red rounded-sm"></span>
+            </button>
 
-            <!-- Link da home para buscar o CEP -->
-            <li class="nav-item">
-                <a class="nav-link text-danger newLinkStyle active" id="areaBuscaCep" data-toggle="pill"
-                    href="#pgBuscaCep" role="tab" aria-controls="pgBuscaCep" aria-selected="true">Home</a>
-            </li>
+            <!-- Collapsible content -->
+            <div class="collapse navbar-collapse" id="basicExampleNav">
 
-            <!-- Link do histórico de busca -->
-            <li class="nav-item">
-                <a class="nav-link text-danger" id="historicoPesquisa" data-toggle="pill" href="#historicopg" role="tab"
-                    aria-controls="historicopg" aria-selected="false">Histórico de pesquisa</a>
-            </li>
+                <!-- Links -->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item px-4">
+                        <h2 class="m-0">Buscar CEP</h2>
+                    </li>
 
-            <!-- Link para ajuda ao cliente -->
-            <li class="nav-item">
-                <a class="nav-link text-danger" id="areaErro" data-toggle="pill" href="#pgErro" role="tab"
-                    aria-controls="pgErro" aria-selected="false">Precisa de ajuda?</a>
-            </li>
+                    <!-- Link da home para buscar o CEP -->
+                    <li class="nav-item">
+                        <a class="nav-link text-danger active rounded-sm" id="areaBuscaCep" data-toggle="pill"
+                            href="#pgBuscaCep" role="tab" aria-controls="pgBuscaCep" aria-selected="true" onclick="removeShow()">Home</a>
+                    </li>
 
-            <!-- Link para os contatos e agradecimentos -->
-            <li class="nav-item">
-                <a class="nav-link text-danger" id="areaHtml" data-toggle="pill" href="#pgHtml" role="tab"
-                    aria-controls="pgHtml" aria-selected="false">Contato</a>
-            </li>
-        </ul>
+                    <!-- Link do histórico de busca -->
+                    <li class="nav-item">
+                        <a class="nav-link text-danger rounded-sm" id="historicoPesquisa" data-toggle="pill" href="#historicopg"
+                            role="tab" aria-controls="historicopg" aria-selected="false" onclick="removeShow()">Histórico de pesquisa</a>
+                    </li>
+
+                    <!-- Link para ajuda ao cliente -->
+                    <li class="nav-item">
+                        <a class="nav-link text-danger rounded-sm" id="areaErro" data-toggle="pill" href="#pgErro" role="tab"
+                            aria-controls="pgErro" aria-selected="false" onclick="removeShow()">Precisa de ajuda?</a>
+                    </li>
+
+                    <!-- Link para os contatos e agradecimentos -->
+                    <li class="nav-item">
+                        <a class="nav-link text-danger rounded-sm" id="areaHtml" data-toggle="pill" href="#pgHtml" role="tab"
+                            aria-controls="pgHtml" aria-selected="false" onclick="removeShow()">Contato</a>
+                    </li>
+
+                </ul>
+                <!-- Links -->
+
+            </div>
+            <!-- Collapsible content -->
+
+        </nav>
+        <!--/.Navbar-->
+        
     </header>
 
     <!-- conteúdo principal da página -->
@@ -240,7 +261,8 @@
 <script src="./css/MDB/js/bootstrap.min.js"></script><!-- js do bootstrap -->
 <script src="./css/MDB/js/jquery.mask.min.js"></script><!-- Jquery mask -->
 <script src="./css/MDB/js/mdb.min.js"></script><!-- js do material design bootstrap -->
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsPwQXIl99WeClJengsMhtHf0WDvMJP0o"></script><!-- API de mapa do google -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsPwQXIl99WeClJengsMhtHf0WDvMJP0o"></script>
+<!-- API de mapa do google -->
 <script src="./javascript/index.js"></script><!-- js pessoal -->
 
 </html>
