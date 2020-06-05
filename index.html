@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- titulo da página -->
+    <title>Busca CEP Level Up!</title>
+
+    <!-- favicon da level up -->
+    <link rel="icon" type="image/png" href="./images/logo-levelup.png" />
+
+    <!-- CSS do Frame work -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"> <!-- icones -->
+    <link rel="stylesheet" href="./css/MDB/css/bootstrap.min.css"><!-- bootstrap -->
+    <link rel="stylesheet" href="./css/MDB/css/mdb.min.css"><!-- material design bootstrap -->
+
+    <!-- CSS pessoal -->
+    <link rel="stylesheet" href="./css/styles.css">
+
+</head>
+
+<body>
+    <header>
+        <ul class="nav nav-pills p-2 border-bottom " id="pills-tab" role="tablist">
+            <!-- titulo da página -->
+            <li class="nav-item px-4">
+                <h2 class="m-0">Buscar CEP</h2>
+            </li>
+
+            <!-- Link da home para buscar o CEP -->
+            <li class="nav-item">
+                <a class="nav-link text-danger newLinkStyle active" id="areaBuscaCep" data-toggle="pill"
+                    href="#pgBuscaCep" role="tab" aria-controls="pgBuscaCep" aria-selected="true">Home</a>
+            </li>
+
+            <!-- Link do histórico de busca -->
+            <li class="nav-item">
+                <a class="nav-link text-danger" id="historicoPesquisa" data-toggle="pill" href="#historicopg" role="tab"
+                    aria-controls="historicopg" aria-selected="false">Histórico de pesquisa</a>
+            </li>
+
+            <!-- Link para ajuda ao cliente -->
+            <li class="nav-item">
+                <a class="nav-link text-danger" id="areaErro" data-toggle="pill" href="#pgErro" role="tab"
+                    aria-controls="pgErro" aria-selected="false">Precisa de ajuda?</a>
+            </li>
+
+            <!-- Link para os contatos e agradecimentos -->
+            <li class="nav-item">
+                <a class="nav-link text-danger" id="areaHtml" data-toggle="pill" href="#pgHtml" role="tab"
+                    aria-controls="pgHtml" aria-selected="false">Contato</a>
+            </li>
+        </ul>
+    </header>
+
+    <!-- conteúdo principal da página -->
+    <main>
+        <!-- Troca pra main, é o conteúdo principal da pagina -->
+        <div class="tab-content" id="pills-tabContent">
+            <!-- Home, área principal e início da página -->
+            <div class="tab-pane fade show active" id="pgBuscaCep" role="tabpanel" aria-labelledby="areaBuscaCep">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 col-xl-4">
+                            <!-- área de pesquisa -->
+                            <table class="h-100 m-auto">
+                                <tr class="align-middle">
+                                    <td>
+                                        <div class="px-4 my-4">
+                                            <div class="pb-2">
+                                                <h3 class="metroBold text-danger">digite um CEP</h3>
+                                                <h6>Digite abaixo para consultar um Código de Endereço Postal (CEP) do
+                                                    Brasil</h6>
+                                            </div>
+
+                                            <div class="group pb-1">
+                                                <input type="text" required id="searchCep"
+                                                    onkeydown="resetWarning('warningCep')">
+                                                <span class="highlight"></span>
+                                                <span class="bar"></span>
+                                                <label>Cep</label>
+                                            </div>
+
+                                            <small class="text-danger metroBold d-none animated fadeIn"
+                                                id="warningCep">DIGITE UM CEP VÁLIDO.</small>
+                                            <button type="button" class="btn btn-danger rounded-pill w-75 p-2"
+                                                id="sendCep" onclick="buscaCEP()"><i class="fas fa-search-location"></i>
+                                                Buscar</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-12 col-xl-8 danger-color-dark container shapeHolder pt-1">
+                            <!-- área de resultado de pesquisa -->
+                            <div class="row">
+                                <div class="col-12 text-center spacerLoad d-none" id="loading">
+                                    <div class="lds-dual-ring"></div>
+                                </div>
+                                <div class="col-1"></div>
+                                <div class="col-10 white p-5 my-3 rounded-sm animated fadeIn fast d-none "
+                                    id="infoSearch">
+                                    <div id="hideElem">
+                                        <h3 class="metroBold text-danger" id="streetName">Nome da rua</h3>
+                                        <h6 class="m-0" id="neighborhoodName">Bairro</h6>
+                                        <h6 class="m-0" id="cityName">Cidade</h6>
+                                        <h6 class="m-0 pb-3" id="cepPrev">CEP</h6>
+                                        <div class="text-center" id="loadingMap">
+                                            <div class="lds-dual-ring"></div>
+                                        </div>
+                                        <div class="black mb-3 rounded-sm" id="googleMap">
+                                        </div>
+                                        <button type="button"
+                                            class="btn btn-danger rounded-pill w-50 p-2 mt-3 mb-2 disabled"
+                                            id="resendCep"><i class="fas fa-search-minus"></i> Fazer outra
+                                            pesquisa</button>
+                                    </div>
+                                </div>
+                                <div class="col-1"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Histórico de buscar -->
+            <div class="tab-pane fade" id="historicopg" role="tabpanel" aria-labelledby="historicoPesquisa">
+                <div class="container-fluid">
+                    <div class="row danger-color-dark" id="containerHistory">
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Área de erros e ajuda ao cliente -->
+            <div class="tab-pane fade" id="pgErro" role="tabpanel" aria-labelledby="areaErro">
+                <div class="container-fluid">
+                    <div class="row danger-color-dark" id="containerHistory">
+                        <div class="col-0 col-xl-2"></div>
+                        <div class="col-12 col-lg-6 col-md-6 col-xl-5">
+                            <div class="white p-3 mt-3 z-index-3 rounded-sm">
+                                <h2 class="metroBold">erros na pesquisa?<strong class="text-danger"> :(</strong></h2>
+                                <h4 class="metroBold">fale conosco:</h4>
+                                <h5><i class="fas fa-at"></i> exemplo@nãoéumemail.com</h5>
+                                <h5><i class="fas fa-phone"></i> (11) 9.9999-9999</h5>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 col-md-6 col-xl-3">
+                            <div class="white p-3 mt-3 z-index-3 rounded-sm">
+                                <h3 class="metroBold">Erros Comuns</h3>
+                                <a href="#">Meu mapa pegou fogo</a><br>
+                                <a href="#">Eu peguei fogo</a><br>
+                                <a href="#">Nada funciona</a><br>
+                                <a href="#">O mapa me levou pra Nárnia</a>
+                            </div>
+                        </div>
+                        <div class="col-0 col-xl-2"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Área de agradecimento à Level Up -->
+            <div class="tab-pane fade" id="pgHtml" role="tabpanel" aria-labelledby="areaHtml">
+                <div class="container-fluid">
+                    <div class="row danger-color-dark" id="containerHistory">
+                        <div class="col-0 col-xl-2"></div>
+                        <div class="col-12 col-xl-5">
+                            <div class="white p-3 mt-3 z-index-3 rounded-sm text-wrap">
+                                <h3 class="metroBold">Agradecimento!</h3>
+                                <h5 class="ralewayMedium">Obrigado a todos da level Up pela oportunidade de fazer o
+                                    teste, espero ter agradado o olhar dos examinadores, tanto no código quanto na
+                                    interface.<br> Novamente, obrigado.</h5>
+                                <h5 class="metroBold">:D</h5>
+                            </div>
+                        </div>
+                        <div class="col-12 col-xl-3">
+                            <div class="white p-3 mt-3 z-index-3 rounded-sm mb-3">
+                                <h3 class="metroBold">Contato e trampos</h3>
+                                <h6 class="ralewayMedium"><i class="fas fa-at"></i> juanvitor16@hotmail.com</h6>
+                                <a href="https://www.linkedin.com/in/juan-vitor-781057167/"><i
+                                        class="fab fa-linkedin"></i> Veja meu linkedin</a><br>
+                                <a href="#"><i class="fab fa-instagram"></i> Já viu meu instagram?</a><br>
+                                <a href="#"><i class="fab fa-artstation"></i> Gosta de arte?</a><br>
+                                <a href="#"><i class="fab fa-github"></i> Olha o git</a>
+                            </div>
+                        </div>
+                        <div class="col-0 col-xl-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modais -->
+        <section id="pageModals">
+            <!-- Modal de erro-->
+            <div class="modal fade" id="modalErro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                aria-hidden="t`rue">
+                <div class="modal-dialog modal-notify modal-danger" role="document">
+                    <!--COnteúdo-->
+                    <div class="modal-content">
+                        <!--Header-->
+                        <div class="modal-header">
+                            <p class="heading">Erro na busca</p>
+
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true" class="white-text">&times;</span>
+                            </button>
+                        </div>
+
+                        <!--Body-->
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="col-3">
+                                    <p></p>
+                                    <p class="text-center animated rotateIn"><i class="fas fa-times fa-4x"></i></p>
+                                </div>
+
+                                <div class="col-9">
+                                    <p>Erro ao Buscar CEP, tenha certeza de que o CEP que digitou existe.</p>
+                                    <h2><span class="badge">Digite um CEP válido</span></h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Footer-->
+                        <div class="modal-footer justify-content-center">
+                            <a type="button" class="btn btn-outline-danger waves-effect" data-dismiss="modal">Fechar</a>
+                        </div>
+                    </div>
+                    <!--Fim-->
+                </div>
+            </div>
+            <!-- Fim Modal de erro-->
+        </section>
+    </main>
+</body>
+
+<script src="./css/MDB/js/jquery.min.js"></script><!-- jquery -->
+<script src="./css/MDB/js/popper.min.js"></script><!-- popper -->
+<script src="./css/MDB/js/bootstrap.min.js"></script><!-- js do bootstrap -->
+<script src="./css/MDB/js/jquery.mask.min.js"></script><!-- Jquery mask -->
+<script src="./css/MDB/js/mdb.min.js"></script><!-- js do material design bootstrap -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsPwQXIl99WeClJengsMhtHf0WDvMJP0o"></script><!-- API de mapa do google -->
+<script src="./javascript/index.js"></script><!-- js pessoal -->
+
+</html>

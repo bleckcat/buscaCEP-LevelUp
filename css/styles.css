@@ -1,0 +1,254 @@
+/* fontes */
+/* local font metropolis */
+@font-face {
+    font-family: "metropolisLight";
+    src: url("../assets/fonts/metropolis-light-webfont.woff") format("woff"),
+        url("../assets/fonts/metropolis-light-webfont.woff2") format("woff2");
+}
+@font-face {
+    font-family: "metropolisRegular";
+    src: url("../assets/fonts/metropolis-regular-webfont.woff") format("woff"),
+        url("../assets/fonts/metropolis-regular-webfont.woff2") format("woff2");
+}
+@font-face {
+    font-family: "metropolisBlack";
+    src: url("../assets/fonts/metropolis-black-webfont.woff") format("woff"),
+        url("../assets/fonts/metropolis-black-webfont.woff2") format("woff2");
+}
+
+/* local Font raleway */
+@font-face {
+    font-family: "ralewayRegular";
+    src: url("../assets/fonts/Raleway-Regular.ttf") format("truetype"); /* Safari, Android, iOS */
+}
+@font-face {
+    font-family: "ralewayMedium";
+    src: url("../assets/fonts/Raleway-Medium.ttf") format("truetype");
+}
+@font-face {
+    font-family: "ralewayBold";
+    src: url("../assets/fonts/Raleway-Bold.ttf") format("truetype");
+}
+@font-face {
+    font-family: "ralewayBlack";
+    src: url("../assets/fonts/Raleway-Black.ttf") format("truetype");
+}
+/* Fim */
+html{
+    background-color: #cc0000;
+}
+/* css da página */
+header {
+    font-family: "metropolisBlack", sans-serif;
+}
+
+body {
+    font-family: "metropolisRegular", sans-serif;
+}
+.metroBold {
+    font-family: "metropolisBlack", sans-serif;
+}
+
+.ralewayMedium {
+    font-family: "ralewayMedium", sans-serif;
+}
+
+.personalInput {
+    width: 100%;
+}
+
+#googleMap {
+    height: 225px;
+}
+
+.codeSizer {
+    height: 450px;
+    overflow-y: scroll;
+}
+
+.shapeHolder {
+    height: 90.4vh;
+}
+
+.spacerLoad{
+    margin-top: 225px;
+}
+
+/* Escrevendo por cima do bootstrap */
+.text-danger {
+    color: #cc0000 !important;
+}
+
+.btn-danger {
+    transition: 0.5s;
+    background-color: #cc0000 !important;
+}
+
+.btn-danger:hover {
+    transition: 0.5s;
+    background-color: #ff4444 !important;
+}
+a.active {
+    background-color: #cc0000 !important;
+    color: white !important;
+}
+
+a.active:focus {
+    color: white !important;
+}
+
+a.active:hover {
+    color: white !important;
+}
+/* FIM  */
+
+/* Animação carregamento */
+.lds-dual-ring {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+}
+.lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid rgb(173, 173, 173);
+    border-color: rgb(230, 230, 230) transparent rgb(233, 233, 233) transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+/* Fim */
+
+/* -------------------------------------------------------- */
+/* Estilização do input */
+.group {
+    position: relative;
+}
+input {
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #757575;
+}
+input:focus {
+    outline: none;
+}
+
+/* Estilização da label */
+label {
+    color: #999;
+    font-size: 18px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 10px;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+/* Label ativa */
+input:focus ~ label,
+input:valid ~ label {
+    top: -10px;
+    font-size: 14px;
+    color: #cc0000;
+}
+
+/* Barras de baixo */
+.bar {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+.bar:before,
+.bar:after {
+    content: "";
+    height: 2px;
+    width: 0;
+    bottom: 1px;
+    position: absolute;
+    background: #cc0000;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+.bar:before {
+    left: 50%;
+}
+.bar:after {
+    right: 50%;
+}
+
+/* active state */
+input:focus ~ .bar:before,
+input:focus ~ .bar:after {
+    width: 50%;
+}
+
+/* highlight */
+.highlight {
+    position: absolute;
+    height: 60%;
+    width: 100px;
+    top: 25%;
+    left: 0;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* highlight ativo */
+input:focus ~ .highlight {
+    -webkit-animation: inputHighlighter 0.3s ease;
+    -moz-animation: inputHighlighter 0.3s ease;
+    animation: inputHighlighter 0.3s ease;
+}
+
+/* animações para todas as plataformas */
+@-webkit-keyframes inputHighlighter {
+    from {
+        background: #ff4444;
+    }
+    to {
+        width: 0;
+        background: transparent;
+    }
+}
+@-moz-keyframes inputHighlighter {
+    from {
+        background: #ff4444;
+    }
+    to {
+        width: 0;
+        background: transparent;
+    }
+}
+@keyframes inputHighlighter {
+    from {
+        background: #ff4444;
+    }
+    to {
+        width: 0;
+        background: transparent;
+    }
+}
+
+@media (max-width: 1024px) {
+    body {
+        font-family: "ralewayRegular", sans-serif;
+    }
+}
+/* Fim */
